@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% load blog_tags %}
 
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
@@ -6,7 +7,7 @@
   <p class="date">
     Published {{ post.publish }} by {{ post.author }}
   </p>
-  {{ post.body|linebreaks }}
+  {{ post.body|markdown }}
   <p>
     <a href="{% url 'blog:post_share' post.id %}">
       Share this post
@@ -15,7 +16,7 @@
 
   <h2 style="text-decoration: underline; text-decoration-color: #00abff; text-underline-offset: .4rem; ">Similar Posts</h2>
     {% for post in similar_posts %}
-      <p>-><a href="{{post.get_absolute_url}}">{{post.title}}</a></p>
+      <p style="margin-left: 0.5rem;">-><a href="{{post.get_absolute_url}}">{{post.title}}</a></p>
       {% empty %}
         -There are no similar posts yet-
     {% endfor %}    

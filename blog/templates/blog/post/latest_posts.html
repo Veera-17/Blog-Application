@@ -1,0 +1,5 @@
+    {% for post in latest_posts %}
+      <p style="margin-left: 0.7rem;">->
+        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+      </p>
+    {% endfor %}
